@@ -2,35 +2,32 @@ import { members } from '../../lib/members';
 
 export default function About() {
   return (
-    <main className="p-4 sm:p-6 max-w-full sm:max-w-4xl mx-auto">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6">Know Us</h1>
+    <main className="p-6 max-w-4xl mx-auto">
+      <h1 className="text-3xl font-bold mb-6">Know Us</h1>
 
       <div className="space-y-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="space-y-6">
           {members.map((member, index) => (
             <div
               key={index}
-              className="bg-gray-100 p-4 rounded-xl flex flex-col items-center gap-4 text-center"
+            className="bg-gray-100 p-4 rounded-xl flex flex-col sm:flex-row items-center gap-4"
             >
-              <div className="flex items-center gap-4">
-                <img
-                  src={member.image1}
-                  alt={member.name}
-                  className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full object-cover"
-                />
-                {member.image2 && (
+              <img
+                src={member.image1}
+                alt={member.name}
+                className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full object-cover"
+              />
+              {member.image2 && (
                   <img
                     src={member.image2}
                     alt={member.name}
-                    className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full object-cover"
+                    className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full object-cover"
                   />
-                )}
-              </div>
+              )}
 
               <div>
                 <h2 className="text-lg sm:text-xl font-semibold text-black">{member.role}</h2>
-                <p className="text-black">{member.name}</p>
-                {member.ph && <p className="text-sm text-gray-600 mt-1">{member.ph}</p>}
+                <p className="text-sm sm:text-base text-black">{member.name}</p>
               </div>
             </div>
           ))}

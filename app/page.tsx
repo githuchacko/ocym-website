@@ -30,7 +30,11 @@ export default function Home() {
           <a href="https://www.instagram.com/ocym.kuzhimattompally" className="text-sm">Instagram</a>
         </div>
         </h1>
-      <img src="/images/logo.jpg" alt="OCYM Logo" className="w-60 h-60 rounded-full object-cover" />
+      <img
+        src="/images/logo.jpg"
+        alt="OCYM Logo"
+        className="w-32 sm:w-48 md:w-60 aspect-square rounded-full object-cover mx-auto"
+      />
       </div>
       <p className="text-lg text-center mb-10 text-gray-600">
         Orthodox Christian Youth Movement 
