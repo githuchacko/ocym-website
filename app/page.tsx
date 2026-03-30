@@ -27,7 +27,7 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-2">
           <img src="images/icons8-instagram-50.png" alt="Instagram Icon" className="w-6 h-6" />
-          <a href="https://www.instagram.com/ocym.kuzhimattompally" className="text-sm">Instagram</a>
+          <a href="https://www.instagram.com/ocym_kuzhimattompally?igsh=NnI1NWZnaHRwMjEx" className="text-sm">Instagram</a>
         </div>
         </h1>
       <img
