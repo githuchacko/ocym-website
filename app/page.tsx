@@ -1,65 +1,83 @@
-import Image from "next/image";
-
+import { events } from '../lib/events';  
+import { updates } from '../lib/updates';
 export default function Home() {
+    function getCountdown(date: string) {
+      const now = new Date();
+      const eventDate = new Date(date);
+
+      const diff = eventDate.getTime() - now.getTime();
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      return `${days} days left`;
+    }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="p-6 max-w-4xl mx-auto">
+      <div className="flex items-center justify-between mb-4">
+      <h1 className="text-4xl font-bold text-center mb-4">
+        St.George OCYM Kuzhimattom
+        <div className="flex items-center gap-2">
+          <img src="images/icons8-facebook-24.png" alt="Facebook Icon" className="w-6 h-6" />
+          <a href="https://facebook.com/ocym.kuzhimattom" className="text-sm">Facebook</a>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="flex items-center gap-2">
+          <img src="images/icons8-youtube-24.png" alt="YouTube Icon" className="w-6 h-6" />
+          <a href="http://youtube.com/@ocymkuzhimattompally" className="text-sm">YouTube</a>
         </div>
-      </main>
-    </div>
+        <div className="flex items-center gap-2">
+          <img src="images/icons8-instagram-50.png" alt="Instagram Icon" className="w-6 h-6" />
+          <a href="https://www.instagram.com/ocym.kuzhimattompally" className="text-sm">Instagram</a>
+        </div>
+        </h1>
+      <img src="/images/logo.jpg" alt="OCYM Logo" className="w-60 h-60 rounded-full object-cover" />
+      </div>
+      <p className="text-lg text-center mb-10 text-gray-600">
+        Orthodox Christian Youth Movement 
+      </p>
+
+      <div className="bg-gray-100 p-6 rounded-2xl mb-6">
+        <h2 className="text-2xl font-semibold mb-2 text-black">
+          Upcoming Events
+        </h2>
+
+      {events.length === 0 ? (
+        <p className="text-black">No upcoming events</p>
+      ) : (
+      <div className="space-y-4">
+              {events.map((event) => (
+                <div key={event.id} className="bg-white p-4 rounded-xl shadow text-black">
+                  <h3 className="text-lg font-semibold text-black">{event.title}</h3>
+                  <p className="text-gray-600 text-black">{event.date}</p>
+                  <p className="text-sm text-blue-600 text-black">
+                    {getCountdown(event.date)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+      </div>
+
+      <div className="bg-gray-100 p-6 rounded-2xl">
+        <h2 className="text-2xl font-semibold mb-2 text-black">
+          Latest Updates
+        </h2>
+   {updates.length === 0 ? (
+        <p className="text-black">No updates available</p>
+      ) : (
+      <div className="space-y-4">
+              {updates.map((update) => (
+                <div key={update.id} className="bg-white p-4 rounded-xl shadow text-black">
+                  <h3 className="text-lg font-semibold text-black">{update.title}</h3>
+                  <p className="text-gray-600 text-black">{update.description}</p>
+                </div>
+              ))}
+            </div>
+          )}
+      </div>
+      <div className="copyright text-center mt-10 text-gray-500">
+        <p>&copy; {new Date().getFullYear()} St. George OCYM Kuzhimattom. All rights reserved.</p>
+      </div>
+    </main>
   );
 }
