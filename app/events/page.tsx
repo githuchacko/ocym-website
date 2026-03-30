@@ -15,7 +15,7 @@ export default function Events() {
     <main className="p-6 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold mb-6">Events</h1>
       {events.length === 0 ? (
-        <p className="text-white">No upcoming events</p>
+        <p>No upcoming events</p>
       ) : (
         <div className="space-y-4">
           {events.map((event) => (
